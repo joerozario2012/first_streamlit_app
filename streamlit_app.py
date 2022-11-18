@@ -2,6 +2,7 @@ import streamlit
 import pandas as pd
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
 streamlit.title('My Parents New Healthy Diner')
 
@@ -35,7 +36,7 @@ try:
     fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
     # Output as a table
     streamlit.dataframe(fruityvice_normalized)
-except urllib.error.URLError as e:
+except URLError as e:
   streamlit.error()
   
 streamlit.stop()
